@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🍓 Fruit Classifier</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #f9fbe7, #e0f2f1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #388e3c;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px #c8e6c9;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 15px;
+            color: #2e7d32;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #388e3c;
+            transform: scale(1.05);
+        }
+
+        h2, h3 {
+            color: #2e7d32;
+            margin-top: 30px;
+        }
+
+        img {
+            margin-top: 15px;
+            border-radius: 12px;
+            max-width: 90%;
+            border: 2px solid #ccc;
+        }
+
+        ul {
+            text-align: left;
+            margin-top: 15px;
+            padding: 0;
+            list-style: none;
+            font-size: 16px;
+        }
+
+        li {
+            padding: 6px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        li strong {
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🍎 Fruit Classifier 🍌</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="image">Upload a fruit image:</label>
+        <input type="file" name="image" id="image" required>
+        <br>
+        <button type="submit">🔍 Predict</button>
+    </form>
+
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        <img src="{{ img_path }}" alt="Predicted Fruit Image" width="300">
+        <h3>Nutrition Information:</h3>
+        <ul>
+            {% for key, value in nutrition.items() %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>
